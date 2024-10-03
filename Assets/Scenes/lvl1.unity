@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 485795849}
   - component: {fileID: 485795848}
   - component: {fileID: 485795852}
+  - component: {fileID: 485795853}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -839,6 +840,29 @@ MonoBehaviour:
   dialogueText: {fileID: 1486431150}
   playerName: "\u0418\u0433\u0440\u043E\u043A"
   npcName: NPC
+--- !u!136 &485795853
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485795847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.50000006
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &487452132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,6 +4372,7 @@ GameObject:
   - component: {fileID: 4282958244338543065}
   - component: {fileID: 4282958244338543066}
   - component: {fileID: 4282958244338543064}
+  - component: {fileID: 4282958244338543067}
   m_Layer: 0
   m_Name: "\u0413\u043E\u0442\u043E\u0432\u044B\u0439"
   m_TagString: Untagged
@@ -4406,7 +4431,9 @@ MonoBehaviour:
   moveSpeed: 3
   stoppingDistance:
   - 3
-  - 0.3
+  - 2.2
+  attackDamage: 1
+  attackRate: 1
 --- !u!54 &4282958244338543065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4457,6 +4484,28 @@ CapsuleCollider:
   m_Height: 2.3553667
   m_Direction: 1
   m_Center: {x: 0, y: -0.67768335, z: -0.12008703}
+--- !u!95 &4282958244338543067
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475599653344473965}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96f1c195fef51f3498fc35f393320a68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!23 &6848071860899150051
 MeshRenderer:
   m_ObjectHideFlags: 0

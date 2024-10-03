@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public Joystick joystick;
 
     private float verticalLookRotation; // Новая переменная для отслеживания поворота камеры по вертикали
+    private bool isSneaking = false; // Вводим переменную для отслеживания состояния ползания
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-   
+
     void Update()
     {
         if (!GetComponent<MenuControl>().isOpened)
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical") + joystick.Vertical;
 
-            if(health <= 0)
+            if (health <= 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -80,13 +81,18 @@ public class PlayerController : MonoBehaviour
             {
                 Sneak(false);
             }
-            if(Input.GetKeyDown(KeyCode.LeftControl))
+
+            // Проверка нажатия клавиши "Control" для бега
+            if (!isSneaking)
             {
-                Run(true);
-            }
-            if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                Run(false);
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    Run(true);
+                }
+                if (Input.GetKeyUp(KeyCode.LeftControl))
+                {
+                    Run(false);
+                }
             }
         }
     }
@@ -98,8 +104,10 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+
     public void Sneak(bool isSneaking)
     {
+        this.isSneaking = isSneaking; // Обновляем переменную состояния ползания
         if (isSneaking)
         {
             speed = 1.0f;
@@ -113,6 +121,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, 1.5f, transform.localScale.z);
         }
     }
+
     public void Run(bool isRunning)
     {
         if (isRunning)
@@ -122,6 +131,19 @@ public class PlayerController : MonoBehaviour
         else
         {
             speed = 5.0f;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health < 0)
+        {
+            health = 0;
+        }
+        if (health > 5)
+        {
+            health = 5;
         }
     }
 }
